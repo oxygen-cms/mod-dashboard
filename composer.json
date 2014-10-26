@@ -1,0 +1,39 @@
+{
+    "name": "oxygen/dashboard",
+    "description": "Oxygen Dashboard",
+    "license": "MIT",
+    "keywords": [
+        "cms",
+        "framework",
+        "OxygenExtension"
+    ],
+    "authors": [
+        {
+            "name": "Chris Chamberlain",
+            "email": "c.chamberlain@iinet.net.au"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oxygen\\Dashboard\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "title": "Oxygen Dashboard",
+        "readme": "oxygen.md",
+        "changes": "changes.md",
+        "icon": "icon.png",
+        "providers": [
+            {
+                "name": "Dashboard",
+                "class": "Oxygen\\Dashboard\\DashboardServiceProvider",
+                "description": "Registers the Dashboard"
+            }
+        ]
+    }
+}
