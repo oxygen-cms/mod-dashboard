@@ -7,21 +7,21 @@
         Lang::get('oxygen/dashboard::dashboard.title')
     );
 
+    $widgets = $dashboard->getWidgets()
+
 ?>
 
 <div class="Block">
     {{ $header->render() }}
 </div>
 
-@foreach($dashboard->getWidgets() as $widget)
+@foreach($widgets as $widget)
 
-    <div class="Block">
-        {{ $widget->render() }}
-    </div>
+    {{ $widget->render() }}
 
 @endforeach
 
-@if(empty($dashboard->getWidgets()))
+@if(empty($widgets))
     <div class="Block">
         <h2 class="heading-gamma margin-large">
             @lang('oxygen/dashboard::dashboard.noItems')
