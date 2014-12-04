@@ -49,16 +49,16 @@ class DashboardServiceProvider extends ServiceProvider {
 	 */
 
 	public function registerWidgets() {
-		$order = $this->app['auth']->check()
-			? $this->app['auth']->user()->getPreferences()->get('dashboard.resources.order')
-			: null;
-		if(!is_array($order)) {
-			$order = [];
-		}
+		$this->app['oxygen.dashboard']->add(function() {
+            $order = $this->app['auth']->check()
+                ? $this->app['auth']->user()->getPreferences()->get('dashboard.resources.order')
+                : null;
+            if(!is_array($order)) {
+                $order = [];
+            }
 
-		$this->app['oxygen.dashboard']->registerWidget(
-			new ResourcesWidget($this->app['oxygen.blueprintManager'], $order)
-		);
+            return new ResourcesWidget($this->app['oxygen.blueprintManager'], $order);
+        });
 	}
 
 	/**

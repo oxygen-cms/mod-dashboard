@@ -19,11 +19,35 @@ class Dashboard {
     protected $widgetPool;
 
     /**
+     * Pool of widgets that haven't been loaded yet.
+     *
+     * @var array
+     */
+
+    protected $lazyLoadWidgets;
+
+    /**
      * Constructs the Dashboard.
      */
 
     public function __construct() {
         $this->widgetPool = [];
+        $this->lazyLoadWidgets = [];
+    }
+
+    /**
+     * Adds a widget to the pool of available widgets.
+     *
+     * @param WidgetInterface $widget
+     * @return void
+     */
+
+    public function add($widget) {
+        if(is_callable($widget)) {
+            $this->registerLazyWidget($widget);
+        } else {
+            $this->registerWidget($widget);
+        }
     }
 
     /**
@@ -35,6 +59,17 @@ class Dashboard {
 
     public function registerWidget(WidgetInterface $widget) {
         $this->widgetPool[$widget->getIdentifier()] = $widget;
+    }
+
+    /**
+     * Adds a callable that will return a widget.
+     *
+     * @param callable $widget
+     * @return void
+     */
+
+    public function registerLazyWidget(callable $widget) {
+        $this->lazyLoadWidgets[] = $widget;
     }
 
     /**
@@ -55,7 +90,19 @@ class Dashboard {
      */
 
     public function getWidgets() {
+        $this->loadLazyWidgets();
+
         return $this->widgetPool;
+    }
+
+    /**
+     * Loads widgets that haven't been loaded yet.
+     */
+
+    protected function loadLazyWidgets() {
+        foreach($this->lazyLoadWidgets as $widget) {
+            $this->registerWidget($widget());
+        }
     }
 
 }
