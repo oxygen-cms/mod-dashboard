@@ -73,6 +73,7 @@ class DashboardServiceProvider extends ServiceProvider {
 		    'Oxygen\Dashboard\Controller\DashboardController@getIndex'
 		);
 		$dashboardAction->beforeFilters[] = 'oxygen.auth';
+        $dashboardAction->useSmoothState = true;
 
 		$dashboardToolbarItem = new ButtonToolbarItem(
 		    'Dashboard',

@@ -13,7 +13,7 @@
             ?>
             <a
               href="{{{ URL::route($item->action->getName()) }}}"
-              class="Block Block--link Cell-oneThird<?php if($i % 3 === 0) { echo ' Cell--last'; } ?>">
+              class="Block Block--link Cell-oneThird<?php if($i % 3 === 0) { echo ' Cell--last'; } ?> Link--smoothState">
                     <h2 class="heading-beta">{{{ $blueprint->getDisplayName(Blueprint::PLURAL) }}}</h2>
                     <span class="Icon--huge Icon--dark Icon--pushUp Icon Icon-{{{ $blueprint->getIcon() }}}"></span>
             </a>
