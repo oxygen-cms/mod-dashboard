@@ -2,11 +2,12 @@
 
 namespace Oxygen\Dashboard;
 
+use Oxygen\Core\Html\RenderableInterface;
 use Oxygen\Core\Html\RenderableTrait;
 
 use Oxygen\Dashboard\Widget\WidgetInterface;
 
-class Dashboard {
+class Dashboard implements RenderableInterface {
 
     use RenderableTrait;
 

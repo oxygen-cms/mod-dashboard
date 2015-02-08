@@ -2,7 +2,9 @@
 
 namespace Oxygen\Dashboard\Widget;
 
-interface WidgetInterface {
+use Oxygen\Core\Html\RenderableInterface;
+
+interface WidgetInterface extends RenderableInterface {
 
     /**
      * Returns a unique identifier for the widget.
@@ -11,13 +13,5 @@ interface WidgetInterface {
      */
 
     public function getIdentifier();
-
-    /**
-     * Renders the widget.
-     *
-     * @return string
-     */
-
-    public function render();
 
 }
