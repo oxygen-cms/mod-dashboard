@@ -14,7 +14,6 @@ class ResourcesWidget implements WidgetInterface {
      *
      * @var Manager
      */
-
     public $blueprintManager;
 
     /**
@@ -22,7 +21,6 @@ class ResourcesWidget implements WidgetInterface {
      *
      * @var array
      */
-
     public $order;
 
     /**
@@ -31,7 +29,6 @@ class ResourcesWidget implements WidgetInterface {
      * @param Manager $blueprintManager
      * @param array $order Order of the Blueprints
      */
-
     public function __construct(Manager $blueprintManager, array $order = []) {
         $this->blueprintManager = $blueprintManager;
         $this->order = $order;
@@ -42,7 +39,6 @@ class ResourcesWidget implements WidgetInterface {
      *
      * @return array
      */
-
     public function getBlueprintsInOrder() {
         if(empty($order)) {
             return $this->blueprintManager->all();
@@ -60,7 +56,6 @@ class ResourcesWidget implements WidgetInterface {
      *
      * @return string
      */
-
     public function getIdentifier() {
         return 'resources';
     }

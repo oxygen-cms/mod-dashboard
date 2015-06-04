@@ -11,7 +11,6 @@ interface WidgetInterface extends RenderableInterface {
      *
      * @return string
      */
-
     public function getIdentifier();
 
 }

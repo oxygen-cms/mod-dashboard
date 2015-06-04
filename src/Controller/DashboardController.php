@@ -22,7 +22,6 @@ class DashboardController extends Controller {
      *
      * @param View $view
      */
-
     public function __construct(View $view) {
         $this->view = $view;
     }
@@ -32,7 +31,6 @@ class DashboardController extends Controller {
      *
      * @return Response
      */
-
     public function getIndex() {
         return $this->view->make('oxygen/dashboard::home', [
             'title' => Lang::get('oxygen/dashboard::dashboard.title')

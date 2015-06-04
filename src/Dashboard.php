@@ -30,7 +30,6 @@ class Dashboard implements RenderableInterface {
     /**
      * Constructs the Dashboard.
      */
-
     public function __construct() {
         $this->widgetPool = [];
         $this->lazyLoadWidgets = [];
@@ -42,7 +41,6 @@ class Dashboard implements RenderableInterface {
      * @param WidgetInterface $widget
      * @return void
      */
-
     public function add($widget) {
         if(is_callable($widget)) {
             $this->registerLazyWidget($widget);
@@ -57,7 +55,6 @@ class Dashboard implements RenderableInterface {
      * @param WidgetInterface $widget
      * @return void
      */
-
     public function registerWidget(WidgetInterface $widget) {
         $this->widgetPool[$widget->getIdentifier()] = $widget;
     }
@@ -68,7 +65,6 @@ class Dashboard implements RenderableInterface {
      * @param callable $widget
      * @return void
      */
-
     public function registerLazyWidget(callable $widget) {
         $this->lazyLoadWidgets[] = $widget;
     }
@@ -79,7 +75,6 @@ class Dashboard implements RenderableInterface {
      * @param WidgetInterface $widget
      * @return void
      */
-
     public function unregisterWidget(WidgetInterface $widget) {
         unset($this->widgetPool[$widget->getIdentifier()]);
     }
@@ -89,7 +84,6 @@ class Dashboard implements RenderableInterface {
      *
      * @return array
      */
-
     public function getWidgets() {
         $this->loadLazyWidgets();
 
