@@ -12,12 +12,12 @@
 ?>
 
 <div class="Block">
-    {{ $header->render() }}
+    {!! $header->render() !!}
 </div>
 
 @foreach($widgets as $widget)
 
-    {{ $widget->render() }}
+    {!! $widget->render() !!}
 
 @endforeach
 

@@ -2,6 +2,6 @@
 
 @section('content')
 
-{{ Dashboard::render() }}
+{!! Dashboard::render() !!}
 
 @stop
