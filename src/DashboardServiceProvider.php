@@ -78,7 +78,7 @@ class DashboardServiceProvider extends ServiceProvider {
 		$dashboardAction = new Action(
 		    'dashboard.main', // name
 		     $this->app['config']->get('oxygen/core::baseURI') . '/dashboard',
-		    'Oxygen\Dashboard\Controller\DashboardController@getIndex'
+		    'OxygenModule\Dashboard\Controller\DashboardController@getIndex'
 		);
 		$dashboardAction->middleware[] = 'oxygen.auth';
         $dashboardAction->useSmoothState = true;
