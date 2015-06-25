@@ -4,7 +4,7 @@
     use Blueprint as BlueprintManager;
 
     $header = new Header(
-        Lang::get('oxygen/dashboard::dashboard.title')
+        Lang::get('oxygen/mod-dashboard::dashboard.title')
     );
 
     $widgets = $dashboard->getWidgets()
@@ -24,7 +24,7 @@
 @if(empty($widgets))
     <div class="Block">
         <h2 class="heading-gamma margin-large">
-            @lang('oxygen/dashboard::dashboard.noItems')
+            @lang('oxygen/mod-dashboard::dashboard.noItems')
         </h2>
     </div>
 @endif

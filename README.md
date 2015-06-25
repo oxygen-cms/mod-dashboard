@@ -1,4 +1,4 @@
-# Oxygen - Dashboard
+# Oxygen Module - Dashboard
 
 This repository contains a basic Dashboard for Oxygen.
 

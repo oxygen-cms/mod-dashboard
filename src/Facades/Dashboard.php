@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxygen\Dashboard\Facades;
+namespace OxygenModule\Dashboard\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

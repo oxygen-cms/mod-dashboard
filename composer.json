@@ -1,5 +1,5 @@
 {
-    "name": "oxygen/dashboard",
+    "name": "oxygen/mod-dashboard",
     "description": "Oxygen Dashboard",
     "license": "MIT",
     "keywords": [
@@ -20,19 +20,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Oxygen\\Dashboard\\": "src/"
+            "OxygenModule\\Dashboard\\": "src/"
         }
     },
     "minimum-stability": "stable",
     "extra": {
-        "title": "Oxygen Dashboard",
+        "title": "Oxygen Module - Dashboard",
         "readme": "oxygen.md",
         "changes": "changes.md",
         "icon": "icon.png",
         "providers": [
             {
                 "name": "Dashboard",
-                "class": "Oxygen\\Dashboard\\DashboardServiceProvider",
+                "class": "OxygenModule\\Dashboard\\DashboardServiceProvider",
                 "description": "Registers the Dashboard"
             }
         ]

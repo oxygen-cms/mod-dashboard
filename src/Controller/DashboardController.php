@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxygen\Dashboard\Controller;
+namespace OxygenModule\Dashboard\Controller;
 
 use Lang;
 use Illuminate\View\Factory as View;
@@ -32,8 +32,8 @@ class DashboardController extends Controller {
      * @return Response
      */
     public function getIndex() {
-        return $this->view->make('oxygen/dashboard::home', [
-            'title' => Lang::get('oxygen/dashboard::dashboard.title')
+        return $this->view->make('oxygen/mod-dashboard::home', [
+            'title' => Lang::get('oxygen/mod-dashboard::dashboard.title')
         ]);
     }
 

@@ -25,6 +25,6 @@
 
 @if($i < 1)
     <h2 class="heading-gamma margin-large">
-        @lang('oxygen/dashboard::dashboard.noItems')
+        @lang('oxygen/mod-dashboard::dashboard.noItems')
     </h2>
 @endif

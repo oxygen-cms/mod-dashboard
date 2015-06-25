@@ -1,8 +1,8 @@
 <?php
 
-namespace Oxygen\Dashboard\Widget;
+namespace OxygenModule\Dashboard\Widget;
 
-use Oxygen\Core\Blueprint\Manager;
+use Oxygen\Core\Blueprint\BlueprintManager;
 use Oxygen\Core\Html\RenderableTrait;
 
 class ResourcesWidget implements WidgetInterface {
@@ -12,7 +12,7 @@ class ResourcesWidget implements WidgetInterface {
     /**
      * Blueprints to use.
      *
-     * @var Manager
+     * @var BlueprintManager
      */
     public $blueprintManager;
 
@@ -26,10 +26,10 @@ class ResourcesWidget implements WidgetInterface {
     /**
      * Constructs the ResourcesWidget.
      *
-     * @param Manager $blueprintManager
+     * @param BlueprintManager $blueprintManager
      * @param array $order Order of the Blueprints
      */
-    public function __construct(Manager $blueprintManager, array $order = []) {
+    public function __construct(BlueprintManager $blueprintManager, array $order = []) {
         $this->blueprintManager = $blueprintManager;
         $this->order = $order;
     }

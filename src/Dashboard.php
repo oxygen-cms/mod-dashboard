@@ -1,11 +1,11 @@
 <?php
 
-namespace Oxygen\Dashboard;
+namespace OxygenModule\Dashboard;
 
 use Oxygen\Core\Html\RenderableInterface;
 use Oxygen\Core\Html\RenderableTrait;
 
-use Oxygen\Dashboard\Widget\WidgetInterface;
+use OxygenModule\Dashboard\Widget\WidgetInterface;
 
 class Dashboard implements RenderableInterface {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxygen\Dashboard\Renderer;
+namespace OxygenModule\Dashboard\Renderer;
 
 use Illuminate\View\Factory as View;
 
@@ -29,12 +29,12 @@ class Dashboard implements RendererInterface {
      * Renders the element.
      *
      * @param object $object Object to render
-     * @param array arguments Extra arguments to customize the element.
+     * @param array $arguments Extra arguments to customize the element.
      * @return string Rendered HTML
      */
     public function render($object, array $arguments) {
         return $this->view->make(
-            'oxygen/dashboard::dashboard',
+            'oxygen/mod-dashboard::dashboard',
             ['dashboard' => $object]
         )->render();
     }

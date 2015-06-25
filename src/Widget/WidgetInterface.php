@@ -1,6 +1,6 @@
 <?php
 
-namespace Oxygen\Dashboard\Widget;
+namespace OxygenModule\Dashboard\Widget;
 
 use Oxygen\Core\Html\RenderableInterface;
 

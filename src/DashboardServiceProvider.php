@@ -1,14 +1,17 @@
-<?php namespace Oxygen\Dashboard;
+<?php namespace OxygenModule\Dashboard;
 
 use Illuminate\Support\ServiceProvider;
 
 use Oxygen\Core\Action\Action;
+use Oxygen\Core\Blueprint\BlueprintManager;
+use Oxygen\Core\Contracts\Routing\BlueprintRegistrar;
+use Oxygen\Core\Html\Navigation\Navigation;
 use Oxygen\Core\Html\Toolbar\ButtonToolbarItem;
 use Oxygen\Core\Html\Toolbar\SpacerToolbarItem;
 
-use Oxygen\Dashboard\Widget\ResourcesWidget;
-use Oxygen\Dashboard\Renderer\Dashboard as DashboardRenderer;
-use Oxygen\Dashboard\Renderer\ResourcesWidget as ResourcesWidgetRenderer;
+use OxygenModule\Dashboard\Widget\ResourcesWidget;
+use OxygenModule\Dashboard\Renderer\Dashboard as DashboardRenderer;
+use OxygenModule\Dashboard\Renderer\ResourcesWidget as ResourcesWidgetRenderer;
 
 class DashboardServiceProvider extends ServiceProvider {
 
@@ -27,7 +30,12 @@ class DashboardServiceProvider extends ServiceProvider {
 	 */
 
 	public function boot() {
-		$this->package('oxygen/dashboard', 'oxygen/dashboard', __DIR__ . '/../resources');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'oxygen/mod-dashboard');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'oxygen/mod-dashboard');
+        $this->publishes([
+            __DIR__ . '/../resources/lang' => base_path('resources/lang/vendor/oxygen/mod-dashboard'),
+            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/oxygen/mod-dashboard')
+        ]);
 
 		$this->registerRenderers();
 		$this->registerWidgets();
@@ -49,7 +57,7 @@ class DashboardServiceProvider extends ServiceProvider {
 	 */
 
 	public function registerWidgets() {
-		$this->app['oxygen.dashboard']->add(function() {
+		$this->app[Dashboard::class]->add(function() {
             $order = $this->app['auth']->check()
                 ? $this->app['auth']->user()->getPreferences()->get('dashboard.resources.order')
                 : null;
@@ -57,7 +65,7 @@ class DashboardServiceProvider extends ServiceProvider {
                 $order = [];
             }
 
-            return new ResourcesWidget($this->app['oxygen.blueprintManager'], $order);
+            return new ResourcesWidget($this->app[BlueprintManager::class], $order);
         });
 	}
 
@@ -72,7 +80,7 @@ class DashboardServiceProvider extends ServiceProvider {
 		     $this->app['config']->get('oxygen/core::baseURI') . '/dashboard',
 		    'Oxygen\Dashboard\Controller\DashboardController@getIndex'
 		);
-		$dashboardAction->beforeFilters[] = 'oxygen.auth';
+		$dashboardAction->middleware[] = 'oxygen.auth';
         $dashboardAction->useSmoothState = true;
 
 		$dashboardToolbarItem = new ButtonToolbarItem(
@@ -80,8 +88,8 @@ class DashboardServiceProvider extends ServiceProvider {
 		    $dashboardAction
 		);
 
-		$this->app['router']->action($dashboardAction);
-		$this->app['oxygen.navigation']->add($dashboardToolbarItem);
+		$this->app[BlueprintRegistrar::class]->action($dashboardAction);
+		$this->app[Navigation::class]->add($dashboardToolbarItem);
 	}
 
 	/**
@@ -89,23 +97,6 @@ class DashboardServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register() {
-		// bind Dashboard
-        $this->app->bindShared(['oxygen.dashboard' => 'Oxygen\Dashboard\Dashboard'], function() {
-            return new Dashboard();
-        });
-	}
-
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-
-	public function provides() {
-		return [
-			'oxygen.dashboard'
-		];
-	}
+	public function register() {}
 
 }
