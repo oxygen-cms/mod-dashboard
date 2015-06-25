@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Oxygen\Core\Action\Action;
 use Oxygen\Core\Blueprint\BlueprintManager;
+use Oxygen\Core\Contracts\CoreConfiguration;
 use Oxygen\Core\Contracts\Routing\BlueprintRegistrar;
 use Oxygen\Core\Html\Navigation\Navigation;
 use Oxygen\Core\Html\Toolbar\ButtonToolbarItem;
@@ -77,7 +78,7 @@ class DashboardServiceProvider extends ServiceProvider {
 	public function registerActions() {
 		$dashboardAction = new Action(
 		    'dashboard.main', // name
-		     $this->app['config']->get('oxygen/core::baseURI') . '/dashboard',
+		     $this->app[CoreConfiguration::class]->getAdminUriPrefix() . '/dashboard',
 		    'OxygenModule\Dashboard\Controller\DashboardController@getIndex'
 		);
 		$dashboardAction->middleware[] = 'oxygen.auth';
