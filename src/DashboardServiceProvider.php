@@ -56,7 +56,6 @@ class DashboardServiceProvider extends ServiceProvider {
 	/**
 	 * Register's the Dashboard component's default widgets.
 	 */
-
 	public function registerWidgets() {
 		$this->app[Dashboard::class]->add(function() {
             $order = $this->app['auth']->check()
