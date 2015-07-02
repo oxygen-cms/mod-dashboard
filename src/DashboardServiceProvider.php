@@ -61,6 +61,7 @@ class DashboardServiceProvider extends ServiceProvider {
             $order = $this->app['auth']->check()
                 ? $this->app['auth']->user()->getPreferences()->get('dashboard.resources.order')
                 : null;
+
             if(!is_array($order)) {
                 $order = [];
             }
@@ -97,6 +98,10 @@ class DashboardServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register() {}
+	public function register() {
+        $this->app->singleton(Dashboard::class, function() {
+            return new Dashboard();
+        });
+    }
 
 }
