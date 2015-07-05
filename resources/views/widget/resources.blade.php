@@ -3,7 +3,7 @@
 <?php
     $i = 0;
 
-    foreach($widget->blueprintManager->all() as $blueprint) {
+    foreach($widget->getBlueprintsInOrder() as $blueprint) {
         if($blueprint->hasPrimaryToolbarItem()) {
             $item = $blueprint->getPrimaryToolbarItem();
             if(Auth::user()->hasPermissions($item->action->permissions)) {

@@ -40,7 +40,7 @@ class ResourcesWidget implements WidgetInterface {
      * @return array
      */
     public function getBlueprintsInOrder() {
-        if(empty($order)) {
+        if(empty($this->order)) {
             return $this->blueprintManager->all();
         }
 
