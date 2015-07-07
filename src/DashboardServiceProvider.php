@@ -6,6 +6,7 @@ use Oxygen\Core\Action\Action;
 use Oxygen\Core\Blueprint\BlueprintManager;
 use Oxygen\Core\Contracts\CoreConfiguration;
 use Oxygen\Core\Contracts\Routing\BlueprintRegistrar;
+use Oxygen\Core\Database\AutomaticMigrator;
 use Oxygen\Core\Html\Navigation\Navigation;
 use Oxygen\Core\Html\Toolbar\ButtonToolbarItem;
 use Oxygen\Core\Html\Toolbar\SpacerToolbarItem;
@@ -37,6 +38,8 @@ class DashboardServiceProvider extends ServiceProvider {
             __DIR__ . '/../resources/lang' => base_path('resources/lang/vendor/oxygen/mod-dashboard'),
             __DIR__ . '/../resources/views' => base_path('resources/views/vendor/oxygen/mod-dashboard')
         ]);
+
+        $this->app[AutomaticMigrator::class]->loadMigrationsFrom(__DIR__ . '/../migrations');
 
 		$this->registerRenderers();
 		$this->registerWidgets();
