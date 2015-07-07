@@ -39,7 +39,7 @@ class DashboardServiceProvider extends ServiceProvider {
             __DIR__ . '/../resources/views' => base_path('resources/views/vendor/oxygen/mod-dashboard')
         ]);
 
-        $this->app[AutomaticMigrator::class]->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->app[AutomaticMigrator::class]->loadMigrationsFrom(__DIR__ . '/../migrations', 'oxygen/mod-dashboard');
 
 		$this->registerRenderers();
 		$this->registerWidgets();
