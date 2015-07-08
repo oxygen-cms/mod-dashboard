@@ -3,14 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Oxygen\Preferences\PreferencesManager;
 
+use App;
+
 class AddDashboardToAuth extends Migration {
 
     /**
      * Run the migrations.
      *
-     * @param \Oxygen\Preferences\PreferencesManager $preferences
      */
-    public function up(PreferencesManager $preferences) {
+    public function up() {
+        $preferences = App::make(PreferencesManager::class);
+
         $schema = $preferences->getSchema('modules.auth');
         $schema->getRepository()->set('dashboard', 'dashboard.main');
         $schema->getRepository()->set('home', 'pages.getView');
@@ -19,10 +22,10 @@ class AddDashboardToAuth extends Migration {
 
     /**
      * Reverse the migrations.
-     *
-     * @param \Oxygen\Preferences\PreferencesManager $preferences
      */
-    public function down(PreferencesManager $preferences) {
+    public function down() {
+        $preferences = App::make(PreferencesManager::class);
+
         $schema = $preferences->getSchema('modules.auth');
         $schema->getRepository()->set('dashboard', null);
         $schema->getRepository()->set('home', null);
