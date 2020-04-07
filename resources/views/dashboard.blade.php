@@ -4,7 +4,7 @@
     use Blueprint as BlueprintManager;
 
     $header = new Header(
-        Lang::get('oxygen/mod-dashboard::dashboard.title')
+        __('oxygen/mod-dashboard::dashboard.title')
     );
 
     $widgets = $dashboard->getWidgets()
