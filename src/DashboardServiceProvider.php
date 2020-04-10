@@ -84,6 +84,7 @@ class DashboardServiceProvider extends ServiceProvider {
 		     $this->app[CoreConfiguration::class]->getAdminUriPrefix() . '/dashboard',
 		    'OxygenModule\Dashboard\Controller\DashboardController@getIndex'
 		);
+		$dashboardAction->middleware[] = 'web';
 		$dashboardAction->middleware[] = 'oxygen.auth';
         $dashboardAction->useSmoothState = true;
 
@@ -91,6 +92,7 @@ class DashboardServiceProvider extends ServiceProvider {
 		    'Dashboard',
 		    $dashboardAction
 		);
+		// $dashboardToolbarItem->icon = 'home';
 
 		$this->app[BlueprintRegistrar::class]->action($dashboardAction);
 		$this->app[Navigation::class]->add($dashboardToolbarItem);
