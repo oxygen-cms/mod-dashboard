@@ -43,7 +43,6 @@ class DashboardServiceProvider extends ServiceProvider {
 
 		$this->registerRenderers();
 		$this->registerWidgets();
-		$this->registerActions();
 	}
 
 	/**
@@ -71,31 +70,6 @@ class DashboardServiceProvider extends ServiceProvider {
 
             return new ResourcesWidget($this->app[BlueprintManager::class], $order);
         });
-	}
-
-	/**
-	 * Registers the Dashboard component's actions
-	 * and adds them to the main nav.
-	 */
-
-	public function registerActions() {
-		$dashboardAction = new Action(
-		    'dashboard.main', // name
-		     $this->app[CoreConfiguration::class]->getAdminUriPrefix() . '/dashboard',
-		    'OxygenModule\Dashboard\Controller\DashboardController@getIndex'
-		);
-		$dashboardAction->middleware[] = 'web';
-		$dashboardAction->middleware[] = 'oxygen.auth';
-        $dashboardAction->useSmoothState = true;
-
-		$dashboardToolbarItem = new ButtonToolbarItem(
-		    'Dashboard',
-		    $dashboardAction
-		);
-		// $dashboardToolbarItem->icon = 'home';
-
-		$this->app[BlueprintRegistrar::class]->action($dashboardAction);
-		$this->app[Navigation::class]->add($dashboardToolbarItem);
 	}
 
 	/**
